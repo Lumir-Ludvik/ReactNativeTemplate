@@ -1,13 +1,12 @@
-import * as Device from "expo-device";
-import { Platform, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-
 import { AnimatedIcon } from "@/components/animated-icon";
 import { HintRow } from "@/components/hint-row";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { WebBadge } from "@/components/web-badge";
 import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
+import * as Device from "expo-device";
+import { Platform, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 function getDevMenuHint() {
   if (Platform.OS === "web") {
@@ -37,6 +36,11 @@ export default function HomeScreen() {
           <ThemedText type="title" style={styles.title}>
             Welcome to&nbsp;Expo
           </ThemedText>
+          <View className="flex-1 items-center justify-center bg-white">
+            <Text className="text-xl font-bold text-blue-500">
+              Welcome to Nativewind!
+            </Text>
+          </View>
         </ThemedView>
 
         <ThemedText type="code" style={styles.code}>
@@ -53,6 +57,7 @@ export default function HomeScreen() {
             title="Fresh start"
             hint={<ThemedText type="code">npm run reset-project</ThemedText>}
           />
+          <HintRow title="Polish" hint={<ThemedText type="code">cow.tsx</ThemedText>} />
         </ThemedView>
 
         {Platform.OS === "web" && <WebBadge />}
