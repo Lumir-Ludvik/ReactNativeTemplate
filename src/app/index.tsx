@@ -3,12 +3,12 @@ import { HintRow } from "@/components/hint-row";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { WebBadge } from "@/components/web-badge";
-import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
+import { BottomTabInset, Spacing } from "@/constants/theme";
 import * as Device from "expo-device";
 import { Platform, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-function getDevMenuHint() {
+function DevMenuHint() {
   if (Platform.OS === "web") {
     return <ThemedText type="small">use browser devtools</ThemedText>;
   }
@@ -29,35 +29,45 @@ function getDevMenuHint() {
 
 export default function HomeScreen() {
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
+    <ThemedView className="flex-1 flex-row justify-center">
+      {/* dynamic paddingBottom (platform runtime math) cannot be expressed as a Tailwind class */}
+      <SafeAreaView
+        style={styles.safeArea}
+        className="flex-1 items-center gap-4 px-6 max-w-[800px]"
+      >
+        <ThemedView className="flex-1 items-center justify-center px-6 gap-6">
           <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
+          <ThemedText type="title" className="text-center">
             Welcome to&nbsp;Expo
           </ThemedText>
-          <ThemedView className="flex-2 items-center justify-center">
+          <ThemedView className="flex-1 items-center justify-center">
             <ThemedText className="text-xl italic">
               Welcome to Nativewind!
             </ThemedText>
           </ThemedView>
         </ThemedView>
 
-        <ThemedText type="code" style={styles.code}>
+        <ThemedText type="code" className="uppercase">
           get started
         </ThemedText>
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
+        <ThemedView
+          type="backgroundElement"
+          className="gap-4 self-stretch px-4 py-6 rounded-3xl"
+        >
           <HintRow
             title="Try editing"
             hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
           />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
+          <HintRow title="Dev tools" hint={<DevMenuHint />} />
           <HintRow
             title="Fresh start"
             hint={<ThemedText type="code">npm run reset-project</ThemedText>}
           />
-          <HintRow title="Polish" hint={<ThemedText type="code">cow.tsx</ThemedText>} />
+          <HintRow
+            title="Polish"
+            hint={<ThemedText type="code">cow.tsx</ThemedText>}
+          />
         </ThemedView>
 
         {Platform.OS === "web" && <WebBadge />}
@@ -67,37 +77,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    flexDirection: "row",
-  },
   safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: "center",
-    gap: Spacing.three,
     paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: "center",
-    justifyContent: "center",
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  title: {
-    textAlign: "center",
-  },
-  code: {
-    textTransform: "uppercase",
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: "stretch",
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
   },
 });
