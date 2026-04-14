@@ -1,4 +1,3 @@
-import { Image } from "expo-image";
 import { SymbolView } from "expo-symbols";
 import React from "react";
 import { Platform, Pressable, ScrollView, StyleSheet } from "react-native";
@@ -11,6 +10,7 @@ import { Collapsible } from "@/components/ui/collapsible";
 import { WebBadge } from "@/components/web-badge";
 import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
+import { Image } from "../../components/ui/image";
 
 export default function TabTwoScreen() {
   const safeAreaInsets = useSafeAreaInsets();
@@ -93,8 +93,8 @@ export default function TabTwoScreen() {
                 running this project.
               </ThemedText>
               <Image
+                className="w-full mt-[8] aspect-296/171 rounded-16"
                 source={require("@/assets/images/tutorial-web.png")}
-                style={styles.imageTutorial}
               />
             </ThemedView>
           </Collapsible>
@@ -107,8 +107,8 @@ export default function TabTwoScreen() {
               for different screen densities.
             </ThemedText>
             <Image
+              className="self-center w-100 h-100"
               source={require("@/assets/images/react-logo.png")}
-              style={styles.imageReact}
             />
             <ExternalLink href="https://reactnative.dev/docs/images">
               <ThemedText type="linkPrimary">Learn more</ThemedText>
@@ -185,16 +185,5 @@ const styles = StyleSheet.create({
   },
   collapsibleContent: {
     alignItems: "center",
-  },
-  imageTutorial: {
-    width: "100%",
-    aspectRatio: 296 / 171,
-    borderRadius: Spacing.three,
-    marginTop: Spacing.two,
-  },
-  imageReact: {
-    width: 100,
-    height: 100,
-    alignSelf: "center",
-  },
+  }
 });
