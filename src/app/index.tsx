@@ -1,3 +1,4 @@
+import { Button, ButtonText } from "@/../components/ui/button";
 import { AnimatedIcon } from "@/components/animated-icon";
 import { HintRow } from "@/components/hint-row";
 import { ThemedText } from "@/components/themed-text";
@@ -68,6 +69,10 @@ export default function HomeScreen() {
             title="Polish"
             hint={<ThemedText type="code">cow.tsx</ThemedText>}
           />
+
+          <Button variant="solid" size="md" action="primary">
+            <ButtonText>Click me</ButtonText>
+          </Button>
         </ThemedView>
 
         {Platform.OS === "web" && <WebBadge />}
