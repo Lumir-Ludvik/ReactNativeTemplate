@@ -1,6 +1,6 @@
 import { SymbolView } from "expo-symbols";
 import React from "react";
-import { Platform, Pressable, ScrollView, StyleSheet } from "react-native";
+import { Platform, ScrollView, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { ExternalLink } from "@/components/external-link";
@@ -12,7 +12,7 @@ import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
 import { Image } from "../../components/ui/image";
 
-export default function TabTwoScreen() {
+export function ExploreScreen() {
   const safeAreaInsets = useSafeAreaInsets();
   const insets = {
     ...safeAreaInsets,
@@ -46,37 +46,39 @@ export default function TabTwoScreen() {
             This starter app includes example{"\n"}code to help you get started.
           </ThemedText>
 
-          <ExternalLink href="https://docs.expo.dev" asChild>
-            <Pressable style={({ pressed }) => pressed && styles.pressed}>
-              <ThemedView type="backgroundElement" style={styles.linkButton}>
-                <ThemedText type="link">Expo documentation</ThemedText>
-                <SymbolView
-                  tintColor={theme.text}
-                  name={{
-                    ios: "arrow.up.right.square",
-                    android: "link",
-                    web: "link",
-                  }}
-                  size={12}
-                />
-              </ThemedView>
-            </Pressable>
+          <ExternalLink
+            href="https://docs.expo.dev"
+            style={({ pressed }) => (pressed ? styles.pressed : undefined)}
+          >
+            <ThemedView type="backgroundElement" style={styles.linkButton}>
+              <ThemedText type="link">Expo documentation</ThemedText>
+              <SymbolView
+                tintColor={theme.text}
+                name={{
+                  ios: "arrow.up.right.square",
+                  android: "link",
+                  web: "link",
+                }}
+                size={12}
+              />
+            </ThemedView>
           </ExternalLink>
         </ThemedView>
 
         <ThemedView style={styles.sectionsWrapper}>
-          <Collapsible title="File-based routing">
+          <Collapsible title="React Navigation">
             <ThemedText type="small">
               This app has two screens:{" "}
-              <ThemedText type="code">src/app/index.tsx</ThemedText> and{" "}
-              <ThemedText type="code">src/app/explore.tsx</ThemedText>
+              <ThemedText type="code">src/screens/home-screen.tsx</ThemedText>{" "}
+              and{" "}
+              <ThemedText type="code">src/screens/explore-screen.tsx</ThemedText>
             </ThemedText>
             <ThemedText type="small">
-              The layout file in{" "}
-              <ThemedText type="code">src/app/_layout.tsx</ThemedText> sets up
-              the tab navigator.
+              The navigator in{" "}
+              <ThemedText type="code">src/navigation/RootNavigator.tsx</ThemedText>{" "}
+              sets up the tab navigator.
             </ThemedText>
-            <ExternalLink href="https://docs.expo.dev/router/introduction">
+            <ExternalLink href="https://reactnavigation.org/docs/getting-started">
               <ThemedText type="linkPrimary">Learn more</ThemedText>
             </ExternalLink>
           </Collapsible>
@@ -185,5 +187,5 @@ const styles = StyleSheet.create({
   },
   collapsibleContent: {
     alignItems: "center",
-  }
+  },
 });

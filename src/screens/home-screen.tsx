@@ -29,7 +29,7 @@ function DevMenuHint() {
   );
 }
 
-export default function HomeScreen() {
+export function HomeScreen() {
   const { show } = useAppToast();
 
   return (
@@ -61,7 +61,7 @@ export default function HomeScreen() {
         >
           <HintRow
             title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
+            hint={<ThemedText type="code">src/screens/home-screen.tsx</ThemedText>}
           />
           <HintRow title="Dev tools" hint={<DevMenuHint />} />
           <HintRow
@@ -73,15 +73,18 @@ export default function HomeScreen() {
             hint={<ThemedText type="code">cow.tsx</ThemedText>}
           />
 
-          <Button 
-            variant="solid" 
-            size="md" 
-            action="primary" 
-            onPress={() => show({
-              title: "Give me a toast",
-              description: "with squirt of lemon",
-              placement: "top"
-            })}>
+          <Button
+            variant="solid"
+            size="md"
+            action="primary"
+            onPress={() =>
+              show({
+                title: "Give me a toast",
+                description: "with squirt of lemon",
+                placement: "top",
+              })
+            }
+          >
             <ButtonText>Click me</ButtonText>
           </Button>
         </ThemedView>
