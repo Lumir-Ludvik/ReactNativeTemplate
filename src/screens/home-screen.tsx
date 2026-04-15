@@ -61,7 +61,9 @@ export function HomeScreen() {
         >
           <HintRow
             title="Try editing"
-            hint={<ThemedText type="code">src/screens/home-screen.tsx</ThemedText>}
+            hint={
+              <ThemedText type="code">src/screens/home-screen.tsx</ThemedText>
+            }
           />
           <HintRow title="Dev tools" hint={<DevMenuHint />} />
           <HintRow

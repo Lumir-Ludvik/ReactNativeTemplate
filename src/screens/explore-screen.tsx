@@ -71,11 +71,15 @@ export function ExploreScreen() {
               This app has two screens:{" "}
               <ThemedText type="code">src/screens/home-screen.tsx</ThemedText>{" "}
               and{" "}
-              <ThemedText type="code">src/screens/explore-screen.tsx</ThemedText>
+              <ThemedText type="code">
+                src/screens/explore-screen.tsx
+              </ThemedText>
             </ThemedText>
             <ThemedText type="small">
               The navigator in{" "}
-              <ThemedText type="code">src/navigation/RootNavigator.tsx</ThemedText>{" "}
+              <ThemedText type="code">
+                src/navigation/RootNavigator.tsx
+              </ThemedText>{" "}
               sets up the tab navigator.
             </ThemedText>
             <ExternalLink href="https://reactnavigation.org/docs/getting-started">

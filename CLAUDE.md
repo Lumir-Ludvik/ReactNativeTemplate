@@ -8,16 +8,16 @@ Expo + React Native greenfield app targeting **Android and iOS**. Uses React Nav
 
 ## Tech stack
 
-| Layer | Library | Version |
-|---|---|---|
-| Framework | Expo | ~55 |
-| Navigation | React Navigation (stack + bottom tabs) | ^7 |
-| Styling | NativeWind + Tailwind CSS | ^4 / ^3.4 |
-| Animations | react-native-reanimated | ^4 |
-| Gestures | react-native-gesture-handler | ~2.30 |
-| Worklets | react-native-worklets | ~0.7 |
-| Data fetching | TanStack Query (react-query) + Axios | latest |
-| Language | TypeScript (strict) | ~5.9 |
+| Layer         | Library                                | Version   |
+| ------------- | -------------------------------------- | --------- |
+| Framework     | Expo                                   | ~55       |
+| Navigation    | React Navigation (stack + bottom tabs) | ^7        |
+| Styling       | NativeWind + Tailwind CSS              | ^4 / ^3.4 |
+| Animations    | react-native-reanimated                | ^4        |
+| Gestures      | react-native-gesture-handler           | ~2.30     |
+| Worklets      | react-native-worklets                  | ~0.7      |
+| Data fetching | TanStack Query (react-query) + Axios   | latest    |
+| Language      | TypeScript (strict)                    | ~5.9      |
 
 Always prefer the latest compatible version within each major when adding new packages. Check the Expo SDK 55 compatibility table before adding a new dependency.
 
@@ -130,22 +130,26 @@ Always prefer the latest compatible version within each major when adding new pa
 The app must run acceptably on low-end Android devices with slow CPUs and limited RAM. Treat performance as a first-class requirement.
 
 ### Memoization
+
 - **Always** wrap callbacks passed as props in `useCallback`. No exceptions.
 - **Always** wrap derived/computed values in `useMemo` when the computation is non-trivial or the result is passed as a prop.
 - Wrap pure components in `React.memo` to prevent unnecessary re-renders from parent updates.
 - Avoid creating objects/arrays/functions inline in JSX (`style={{ }}`, `onPress={() => ...}`).
 
 ### Avoiding unnecessary re-renders
+
 - Use `useRef` for values that must persist across renders but should not trigger re-renders.
 - Prefer local state over lifted state when state is only needed by a subtree.
 
 ### Offloading expensive work
+
 - Run animations and gesture handling entirely on the UI thread using `react-native-reanimated` worklets (`useAnimatedStyle`, `useSharedValue`, `runOnUI`). Never drive animations from the JS thread.
 - Move CPU-intensive logic (data parsing, sorting, transformation) to a worklet or background task so the main thread stays free for rendering.
 - Expensive computations must be memoized — never recomputed on every render.
 - Defer non-critical work with `InteractionManager.runAfterInteractions`.
 
 ### Lists
+
 - Use `FlashList` (from `@shopify/flash-list`) instead of `FlatList` for all scrollable lists.
 - Always provide `estimatedItemSize` and a stable `keyExtractor`.
 - Keep list item components lightweight and memoized with `React.memo`.

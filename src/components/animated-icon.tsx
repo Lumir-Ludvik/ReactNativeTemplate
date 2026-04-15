@@ -91,7 +91,6 @@ export function AnimatedIcon() {
           className="w-[201] h-[201] absolute"
           source={{
             uri: require("@/assets/images/logo-glow.png"),
-
           }}
         />
       </Animated.View>
@@ -107,7 +106,7 @@ export function AnimatedIcon() {
         <Image
           className="w-[76] h-[71] absolute"
           source={{
-            uri: require("@/assets/images/expo-logo.png")
+            uri: require("@/assets/images/expo-logo.png"),
           }}
         />
       </Animated.View>
