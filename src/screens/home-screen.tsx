@@ -1,11 +1,13 @@
 import { Button, ButtonText } from "@/../components/ui/button";
 import { AnimatedIcon } from "@/components/animated-icon";
+import Counter from "@/components/counter";
 import { HintRow } from "@/components/hint-row";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { WebBadge } from "@/components/web-badge";
 import { BottomTabInset, Spacing } from "@/constants/theme";
 import { useAppToast } from "@/hooks/use-app-toast";
+import { useCounterStore } from "@/stores/counter-store";
 import * as Device from "expo-device";
 import { Platform, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -31,6 +33,7 @@ function DevMenuHint() {
 
 export function HomeScreen() {
   const { show } = useAppToast();
+  const count = useCounterStore((store) => store.count);
 
   return (
     <ThemedView className="flex-1 flex-row justify-center">
@@ -82,13 +85,14 @@ export function HomeScreen() {
             onPress={() =>
               show({
                 title: "Give me a toast",
-                description: "with squirt of lemon",
+                description: `with squirt of lemon ${count}`,
                 placement: "top",
               })
             }
           >
             <ButtonText>Click me</ButtonText>
           </Button>
+          <Counter />
         </ThemedView>
 
         {Platform.OS === "web" && <WebBadge />}
