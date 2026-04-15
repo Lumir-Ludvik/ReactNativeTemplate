@@ -20,7 +20,7 @@ export function RootNavigator() {
         style={[styles.icon, { width: size, height: size, tintColor: color }]}
       />
     ),
-    []
+    [],
   );
 
   const renderExploreIcon = useCallback(
@@ -30,7 +30,7 @@ export function RootNavigator() {
         style={[styles.icon, { width: size, height: size, tintColor: color }]}
       />
     ),
-    []
+    [],
   );
 
   return (

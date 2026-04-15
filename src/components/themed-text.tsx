@@ -25,25 +25,23 @@ export function ThemedText({
 }: ThemedTextProps) {
   return (
     <>
-    {type === "title" ? (
-      <Heading
-        bold={true}
-        size="4xl"
-        {...rest}></Heading>
-    ) : (
-    <Text
-      style={[
-        type === "default" && styles.default,
-        type === "small" && styles.small,
-        type === "smallBold" && styles.smallBold,
-        type === "subtitle" && styles.subtitle,
-        type === "link" && styles.link,
-        type === "linkPrimary" && styles.linkPrimary,
-        type === "code" && styles.code,
-        style,
-      ]}
-      {...rest}
-    />)}
+      {type === "title" ? (
+        <Heading bold={true} size="4xl" {...rest}></Heading>
+      ) : (
+        <Text
+          style={[
+            type === "default" && styles.default,
+            type === "small" && styles.small,
+            type === "smallBold" && styles.smallBold,
+            type === "subtitle" && styles.subtitle,
+            type === "link" && styles.link,
+            type === "linkPrimary" && styles.linkPrimary,
+            type === "code" && styles.code,
+            style,
+          ]}
+          {...rest}
+        />
+      )}
     </>
   );
 }

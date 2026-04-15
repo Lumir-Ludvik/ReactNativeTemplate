@@ -1,5 +1,4 @@
-import "./src/global.css";
-
+import "@/global.css";
 import {
   DarkTheme,
   DefaultTheme,

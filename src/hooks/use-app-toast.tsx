@@ -1,11 +1,16 @@
-import { Toast, ToastDescription, ToastTitle, useToast } from '@/../components/ui/toast';
-import { useRef } from 'react';
+import {
+  Toast,
+  ToastDescription,
+  ToastTitle,
+  useToast,
+} from "@/../components/ui/toast";
+import { useRef } from "react";
 
 type ToastOptions = {
   title: string;
   description?: string;
-  action?: 'success' | 'error' | 'warning' | 'info';
-  placement?: 'top' | 'bottom';
+  action?: "success" | "error" | "warning" | "info";
+  placement?: "top" | "bottom";
   duration?: number;
 };
 
@@ -19,12 +24,12 @@ export function useAppToast() {
       return;
     }
 
-    const { 
-      title, 
-      description, 
-      action = 'success', 
-      placement = 'top', 
-      duration = 4000 
+    const {
+      title,
+      description,
+      action = "success",
+      placement = "top",
+      duration = 4000,
     } = options;
 
     toastIdRef.current += 1;
