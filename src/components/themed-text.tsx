@@ -1,7 +1,9 @@
-import { Platform, StyleSheet, Text, type TextProps } from "react-native";
+import { Platform, StyleSheet, type TextProps } from "react-native";
 
 import { Fonts, ThemeColor } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
+import { Heading } from "../../components/ui/heading";
+import { Text } from "../../components/ui/text";
 
 export type ThemedTextProps = TextProps & {
   type?:
@@ -25,11 +27,17 @@ export function ThemedText({
   const theme = useTheme();
 
   return (
+    <>
+    {type === "title" ? (
+      <Heading
+        bold={true}
+        size="4xl"
+        {...rest}></Heading>
+    ) : (
     <Text
       style={[
         { color: theme[themeColor ?? "text"] },
         type === "default" && styles.default,
-        type === "title" && styles.title,
         type === "small" && styles.small,
         type === "smallBold" && styles.smallBold,
         type === "subtitle" && styles.subtitle,
@@ -39,7 +47,8 @@ export function ThemedText({
         style,
       ]}
       {...rest}
-    />
+    />)}
+    </>
   );
 }
 
@@ -58,11 +67,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     fontWeight: 500,
-  },
-  title: {
-    fontSize: 48,
-    fontWeight: 600,
-    lineHeight: 52,
   },
   subtitle: {
     fontSize: 32,

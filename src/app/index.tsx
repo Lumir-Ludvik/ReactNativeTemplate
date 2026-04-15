@@ -1,9 +1,11 @@
+import { Button, ButtonText } from "@/../components/ui/button";
 import { AnimatedIcon } from "@/components/animated-icon";
 import { HintRow } from "@/components/hint-row";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { WebBadge } from "@/components/web-badge";
 import { BottomTabInset, Spacing } from "@/constants/theme";
+import { useAppToast } from "@/hooks/use-app-toast";
 import * as Device from "expo-device";
 import { Platform, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -28,6 +30,8 @@ function DevMenuHint() {
 }
 
 export default function HomeScreen() {
+  const { show } = useAppToast();
+
   return (
     <ThemedView className="flex-1 flex-row justify-center">
       {/* dynamic paddingBottom (platform runtime math) cannot be expressed as a Tailwind class */}
@@ -68,6 +72,18 @@ export default function HomeScreen() {
             title="Polish"
             hint={<ThemedText type="code">cow.tsx</ThemedText>}
           />
+
+          <Button 
+            variant="solid" 
+            size="md" 
+            action="primary" 
+            onPress={() => show({
+              title: "Give me a toast",
+              description: "with squirt of lemon",
+              placement: "top"
+            })}>
+            <ButtonText>Click me</ButtonText>
+          </Button>
         </ThemedView>
 
         {Platform.OS === "web" && <WebBadge />}
